@@ -1,9 +1,67 @@
 import React, { useState, useEffect } from "react";
 
+const SearchSong = ({ handleSearch }) => (
+  <form className="d-flex my-3" onSubmit={handleSearch}>
+    <label htmlFor="searchSongs" className="form-label text-nowrap mt-1">
+      Search songs:
+    </label>
+    <input
+      id="searchSongs"
+      className="form-control form-control-sm"
+      type="search"
+      placeholder="Search name of songs.."
+      aria-labelledby="Search"
+      onChange={handleSearch}
+    />
+    <button className="btn btn-success" type="submit">
+      Search
+    </button>
+  </form>
+);
+
+const PlaySong = ({ selectedSong, handleSongPlay, isAudioVisible }) => (
+  <div
+    className="card h-100 text-light bg-dark border-success"
+    style={{ maxWidth: "340px" }}
+  >
+    <img
+      src={selectedSong.album.images[0].url}
+      className="card-img-top rounded"
+      alt="songimage"
+      style={{ height: 260 }}
+    />
+    <div className="card-body text-center">
+      <h3 className="card-title text-wrap">{selectedSong.name}</h3>
+      <h5 className="card-text text-wrap">{selectedSong.artists[0].name}</h5>
+      <span className="text-secondary text-wrap">
+        {selectedSong.album.name}
+      </span>
+    </div>
+    <div className="card-footer border-success d-flex flex-row justify-content-between">
+      <small className="text-secondary mt-2">Last played 2min ago</small>
+      <button
+        type="button"
+        className="btn btn-success"
+        onClick={handleSongPlay}
+      >
+        Play now
+      </button>
+    </div>
+    <audio
+      controls
+      className={isAudioVisible ? "d-block mb-3 mx-3" : "d-none mb-3 mx-3"}
+    >
+      <source src={selectedSong.preview_url} type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+);
+
 const App = () => {
   const [songs, setSongs] = useState([]);
   const [token, setToken] = useState("");
   const [selectedSong, setSelectedSong] = useState(null);
+  const [isAudioVisible, setIsAudioVisible] = useState(false);
 
   useEffect(() => {
     getToken();
@@ -54,39 +112,22 @@ const App = () => {
     setSelectedSong(song);
   };
 
+  const handleSongPlay = () => {
+    setIsAudioVisible(true);
+    // const audio = new Audio(selectedSong.preview_url);
+    // audio.play();
+  };
+
   return (
     <div className="container">
       <div className="container-fluid">
-        <form className="d-flex my-3" onSubmit={handleSearch}>
-          <label htmlFor="searchSongs" className="form-label text-nowrap mt-1">
-            Search songs:
-          </label>
-          <input
-            id="searchSongs"
-            className="form-control form-control-sm"
-            type="search"
-            placeholder="Search name of songs.."
-            aria-label="Search"
-            onChange={handleSearch}
-          />
-          <button className="btn btn-success" type="submit">
-            Search
-          </button>
-        </form>
+        <SearchSong handleSearch={handleSearch} />
         {selectedSong ? (
-          <div className="card mt-3">
-            <div className="card-body">
-              <h5 className="card-title">{selectedSong.name}</h5>
-              <p className="card-text">
-                Artist: {selectedSong.artists[0].name}
-              </p>
-              <p className="card-text">Album: {selectedSong.album.name}</p>
-              <audio controls>
-                <source src={selectedSong.preview_url} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-            </div>
-          </div>
+          <PlaySong
+            selectedSong={selectedSong}
+            handleSongPlay={handleSongPlay}
+            isAudioVisible={isAudioVisible}
+          />
         ) : (
           <ul className="list-group">
             {songs.map((song) => (
