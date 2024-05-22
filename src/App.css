@@ -1,43 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-body {
-  font-family: "Poppins", sans-serif;
-}
-
-.btn.dropdown-toggle {
-  width: 150px;
-  text-align: center;
-}
-
-span.caret {
-  position: absolute;
-  left: 90%;
-  top: 45%;
-}
-
-label {
-  padding-top: 5px;
-}
-
-.form-label {
-  padding-left: 0px !important;
-}
-
-.form-control {
-  border-radius: 100px;
-}
-
-.btn-success {
-  background-color: #3b7d4a im !important;
-  border-radius: 100px;
-  border: none;
+/* Add this CSS to highlight the selected item and apply hover effect */
+.list-group-item {
   cursor: pointer;
 }
 
-.btn-success:hover {
-  background-color: #4daf64;
+.list-group-item:hover {
+  background-color: #13b84a;
 }
 
-img.track {
-  border: 3px solid #8a8a8a;
+.list-group-item.selected {
+  background-color: green;
 }

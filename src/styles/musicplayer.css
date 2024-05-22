@@ -1,0 +1,99 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.component {
+  width: 100%;
+  max-width: 100%;
+  padding: 2em;
+  border: 0.1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+
+input[type="range"] {
+  background-color: #27ae60;
+}
+.musicCover {
+  border-radius: 10%;
+}
+
+.title {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+.subTitle {
+  font-size: 0.8em;
+  margin-top: -1em;
+  color: #4f4f4f;
+}
+.playButton {
+  background: none;
+  border: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  margin: 0 10px;
+}
+
+.controls button:focus {
+  outline: none;
+}
+
+.time {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #828282;
+  font-size: smaller;
+}
+
+.timeline {
+  width: 100%;
+  background-color: #27ae60;
+  margin-top: 10px;
+}
+
+.timeline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #27ae60;
+  cursor: pointer;
+}
+
+.timeline::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #27ae60;
+  cursor: pointer;
+}
+@media (max-width: 100%) {
+  .component {
+    width: 50%;
+  }
+}
