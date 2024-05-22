@@ -4,6 +4,7 @@ import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { IconContext } from "react-icons";
 import "../styles/musicplayer.css";
 
+//Songs stored in local
 const songs = [...Array(8)].map((_, index) =>
   require(`../audios/song${index + 1}.mp3`)
 );

@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
+body {
+  background-color: black;
+}
 /* Add this CSS to highlight the selected item and apply hover effect */
 .list-group-item {
   cursor: pointer;
