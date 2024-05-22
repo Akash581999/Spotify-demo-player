@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import MusicPlayer from "./components/MusicPlayer";
 import "./App.css"; // Import CSS file for styling
+import Header from "./components/Header";
 
 const SearchSong = ({ handleSearch }) => (
   <div className="container-fluid">
-    <form className="d-flex my-3" onSubmit={handleSearch} role="search">
+    <form className="d-flex" onSubmit={handleSearch} role="search">
       <label
         htmlFor="searchSongs"
         className="form-label fw-bolder fs-5 text-success text-nowrap mt-2"
       >
-        Search songs:
+        Search
       </label>
       <input
         id="searchSongs"
@@ -134,18 +135,17 @@ const App = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="container-fluid">
-          <SearchSong handleSearch={handleSearch} />
-          <div className="row">
-            {songs.map((song) => (
-              <SongCard
-                key={song.id}
-                song={song}
-                handleSongClick={handleSongClick}
-              />
-            ))}
-          </div>
+      <div className="container-fluid">
+        <Header />
+        <SearchSong handleSearch={handleSearch} />
+        <div className="row">
+          {songs.map((song) => (
+            <SongCard
+              key={song.id}
+              song={song}
+              handleSongClick={handleSongClick}
+            />
+          ))}
         </div>
       </div>
       {show && selectedSong && <MusicPlayer selectedSong={selectedSong} />}
