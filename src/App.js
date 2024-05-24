@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import MusicPlayer from "./components/MusicPlayer";
 import "./App.css"; // Import CSS file for styling
 import Header from "./components/Header";
+import MusicPlayer from "./components/MusicPlayer";
+import Album from "./components/Album";
+import Footer from "./components/Footer"
 
 const SearchSong = ({ handleSearch }) => (
   <div className="container-fluid">
@@ -149,6 +151,8 @@ const App = () => {
         </div>
       </div>
       {show && selectedSong && <MusicPlayer selectedSong={selectedSong} />}
+      <Album />
+      <Footer />
     </>
   );
 };

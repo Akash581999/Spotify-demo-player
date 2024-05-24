@@ -5,7 +5,7 @@ const Header = (props) => {
         <>
             <nav className="navbar navbar-expand-lg navbar-dark text-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="/">AllTraxs</a>
+                    <a className="navbar-brand text-primary fs-1 fw-bolder" href="/">AllTraxs</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
