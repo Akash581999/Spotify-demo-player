@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { IconContext } from "react-icons";
+import playingif from "../images/playing.gif";
 import "../styles/musicplayer.css";
 
-//Songs stored in local
 const songs = [...Array(8)].map((_, index) =>
   require(`../audios/song${index + 1}.mp3`)
 );
@@ -14,12 +14,15 @@ const MusicPlayer = ({ selectedSong }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [currentVolume, setCurrentVolume] = useState(0.5);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (isPlaying) {
       audio.play();
+      setIsVisible(true);
     } else {
       audio.pause();
+      setIsVisible(false);
     }
   }, [isPlaying, audio]);
 
@@ -96,7 +99,12 @@ const MusicPlayer = ({ selectedSong }) => {
             <BiSkipPrevious />
           </IconContext.Provider>
         </button>
-        <button className="playButton" onClick={togglePlay}>
+        <button
+          className="playButton"
+          onClick={() => {
+            togglePlay();
+          }}
+        >
           <IconContext.Provider value={{ size: "3em", color: "#27AE60" }}>
             {isPlaying ? <AiFillPauseCircle /> : <AiFillPlayCircle />}
           </IconContext.Provider>
@@ -109,7 +117,7 @@ const MusicPlayer = ({ selectedSong }) => {
       </div>
       <div className="d-flex flex-column align-items-center align-self-center bg-dark">
         <div className="p-1 mb-3">
-          <button onClick={decreaseVolume}>
+          <button onClick={decreaseVolume} className="btn btn-dark">
             <i className="fa fa-volume-down text-light"></i>
           </button>
           <input
@@ -121,7 +129,7 @@ const MusicPlayer = ({ selectedSong }) => {
             value={currentVolume}
             onChange={handleVolumeChange}
           />
-          <button onClick={increaseVolume}>
+          <button onClick={increaseVolume} className="btn btn-dark">
             <i className="fa fa-volume-up text-light"></i>
           </button>
         </div>
@@ -142,6 +150,9 @@ const MusicPlayer = ({ selectedSong }) => {
           </p>
         </div>
       </div>
+      {isVisible && (
+        <img src={playingif} alt="playingif" style={{ height: "8vh" }} />
+      )}
       <div className="mb-1 d-flex flex-row">
         <a href="/" className="text-success">
           Get subscription for <br />
